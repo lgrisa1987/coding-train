@@ -35,7 +35,7 @@
                     image = await response.blob(),
                     imgTag = document.getElementsByTagName('img')[index],
                     setAttributes = (el, attrs) => {
-                        for (var key in attrs) el.setAttribute(key, attrs[key]);
+                        for (const key in attrs) el.setAttribute(key, attrs[key]);
                     }
                 setAttributes(
                     imgTag, {

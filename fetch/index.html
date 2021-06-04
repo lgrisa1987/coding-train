@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            max-width: 480px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="" alt="">
+    <img src="" alt="">
+    <script>
+        console.log('about to fetch a rainbow');
+        /* fetch('./rainbow.jpg')
+            .then(response => {
+                console.log(response)
+                return response.blob();
+            })
+            .then(blob => {
+                console.log(blob)
+                document.getElementById('rainboow').src = URL.createObjectURL(blob);
+            })
+            .catch(error => console.error(error)); */
+        ['rainbow', 'tesla'].forEach((img, index) => {
+            (async () => {
+                const response = await fetch(`./${img}.jpg`),
+                    image = await response.blob(),
+                    imgTag = document.getElementsByTagName('img')[index],
+                    setAttributes = (el, attrs) => {
+                        for (var key in attrs) el.setAttribute(key, attrs[key]);
+                    }
+                setAttributes(
+                    imgTag, {
+                        "src": URL.createObjectURL(image),
+                        "alt": img
+                    });
+                //imgTag.src = URL.createObjectURL(image);
+            })().catch(error => console.error('There was an error fetching'));
+        })
+    </script>
+</body>
+
+</html>

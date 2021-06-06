@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Graph CSV</title>
+</head>
+
+<body>
+    <script>
+        const getData = async () => {
+            const response = await fetch('ZonAnn.Ts+dSST.csv'),
+                data = await response.text();
+
+            const table = data.split(/\n/).slice(1);
+            table.forEach(row => {
+                const columns = row.split(/,/),
+                    [year, temp] = columns;
+                console.log(year, temp);
+            });
+        }
+        getData();
+    </script>
+</body>
+
+</html>
